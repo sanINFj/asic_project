@@ -1,3 +1,4 @@
+*_sim
 .venv/
 sim_build/
 *.vcd
