@@ -1,0 +1,38 @@
+# ============================================================
+# ASSCE - Yosys Synthesis Sanity Check
+# ============================================================
+
+# Read RTL
+read_verilog -sv rtl/fifo.sv
+read_verilog -sv rtl/feature_extract.sv
+read_verilog -sv rtl/raese.sv
+read_verilog -sv rtl/sparse_encoder.sv
+read_verilog -sv rtl/scheduler.sv
+read_verilog -sv rtl/mac_array.sv
+read_verilog -sv rtl/accumulator.sv
+read_verilog -sv rtl/top.sv
+
+# Select top-level design
+hierarchy -top top
+
+# Basic synthesis
+proc
+opt
+fsm
+opt
+memory
+opt
+techmap
+opt
+
+# Generic synthesis
+abc -g simple
+
+# Clean up
+opt_clean
+
+# Statistics
+stat
+
+# Write synthesized netlist
+write_verilog -noattr results/assce_synth.v

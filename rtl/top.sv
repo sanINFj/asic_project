@@ -206,14 +206,11 @@ module top #(
     // RAESE
     // ============================================================
 
-    raese #(
-        .GRADUAL_COUNT_TH(3)
-    ) u_raese (
+    raese u_raese (
         .clk(clk),
         .rst(rst),
 
         .delta_mag(delta_mag),
-        .delta(delta),
         .acceleration(acceleration),
         .feature_valid(feature_valid),
 
